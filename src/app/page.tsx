@@ -1,11 +1,11 @@
 import { PolkadotProvider } from "@/contexts";
 import { Stake, UserWallet } from "@/components";
-import Card from "@/ui-kit/cards/Card";
+import Card from "@/ui-kit/Card";
 
 function HomePage() {
   return (
     <PolkadotProvider>
-      <Card>
+      <Card small>
         <Stake />
         <UserWallet />
       </Card>

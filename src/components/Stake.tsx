@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { usePolkadotApi } from "../contexts/PolkadotContext";
-import Button from "@/ui-kit/buttons/Button";
+import Button from "@/ui-kit/Button";
 
 const Stake: React.FC = () => {
   const { api } = usePolkadotApi();
