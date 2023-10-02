@@ -24,7 +24,7 @@ npm run dev
 ```
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License - see the [MIT License](LICENSE.md) file for details.
 
 ## Contact
 For any inquiries, feel free to open an issue on the GitHub repository.
