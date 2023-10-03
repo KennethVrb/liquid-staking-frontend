@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { usePolkadotApi } from "../contexts/PolkadotContext";
 import Button from "@/ui-kit/Button";
 
 const Stake: React.FC = () => {
-  const { api } = usePolkadotApi();
   const [amount, setAmount] = useState<number>(0);
 
   const handleStake = async () => {};
@@ -20,9 +18,7 @@ const Stake: React.FC = () => {
         placeholder="Amount of DOTs"
         className="p-2 py-3 border rounded-2xl w-full"
       />
-      <Button onClick={handleStake} className="w-full">
-        Stake
-      </Button>
+      <Button onClick={handleStake}>Stake</Button>
     </div>
   );
 };

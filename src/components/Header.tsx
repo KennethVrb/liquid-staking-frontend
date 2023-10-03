@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
-import Button from "@/ui-kit/Button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+import { ConnectWallet } from ".";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -29,6 +30,7 @@ const Header: React.FC = () => {
             alt="OkAlice Liquid Staking Platform"
             width="250"
             height="88"
+            priority={true}
           />
           <nav className="flex space-x-8 text-2xl text-primary">
             {links.map((link) => (
@@ -46,7 +48,7 @@ const Header: React.FC = () => {
             ))}
           </nav>
         </div>
-        <Button>Connect Wallet</Button>
+        <ConnectWallet />
       </div>
     </header>
   );
