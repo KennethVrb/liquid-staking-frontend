@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Wallet } from ".";
+import { ChainSwitcher, Wallet } from ".";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -48,7 +48,10 @@ const Header: React.FC = () => {
             ))}
           </nav>
         </div>
-        <Wallet />
+        <div className="flex items-center space-x-4">
+          <ChainSwitcher />
+          <Wallet />
+        </div>
       </div>
     </header>
   );
