@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { ConnectWallet } from ".";
+import { Wallet } from ".";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -48,7 +48,7 @@ const Header: React.FC = () => {
             ))}
           </nav>
         </div>
-        <ConnectWallet />
+        <Wallet />
       </div>
     </header>
   );
