@@ -1,21 +1,36 @@
 "use client";
 
-import Button from "@/ui-kit/Button";
-import Modal from "@/ui-kit/Modal";
 import Image from "next/image";
 import { useState } from "react";
 import { useWallet, useAllWallets } from "useink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWallet } from "@fortawesome/free-solid-svg-icons";
+
+import Button from "@/ui-kit/Button";
+import Modal from "@/ui-kit/Modal";
 
 function ConnectWallet() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { account, connect, disconnect } = useWallet();
   const wallets = useAllWallets();
 
+  console.log(isModalOpen);
   if (account) {
     return (
-      <Button onClick={disconnect}>
-        {account?.name || `${account.address.slice(0, 6)}...`}
-      </Button>
+      <div className="relative group inline-flex items-center px-4 py-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100">
+        <FontAwesomeIcon icon={faWallet} className="mr-2" />
+        <span>{`${account.address.slice(0, 5)}...${account.address.slice(
+          -5
+        )}`}</span>
+        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition">
+          <button
+            onClick={disconnect}
+            className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-[155px]"
+          >
+            Disconnect
+          </button>
+        </div>
+      </div>
     );
   }
 
@@ -31,19 +46,21 @@ function ConnectWallet() {
           {wallets.map((w) => (
             <button
               key={w.title}
-              onClick={() =>
+              onClick={() => {
+                setIsModalOpen(false);
+
                 w.installed
                   ? connect(w.extensionName)
-                  : window.open(w.installUrl)
-              }
-              className="flex flex-col items-center border-2 border-primary p-4 rounded-2xl transition duration-300 ease-in-out transform hover:scale-105"
+                  : window.open(w.installUrl);
+              }}
+              className="flex flex-col items-center bg-gray-200 p-4 rounded-2xl transition duration-300 ease-in-out transform hover:scale-105"
             >
               <div className="mb-2">
                 <Image
                   src={w.logo.src}
                   alt={w.logo.alt}
-                  width={22}
-                  height={22}
+                  width={40}
+                  height={40}
                 />
               </div>
               <span className="text-primary font-semibold">
