@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import Button from "./Button";
+
+import { Button } from "./buttons";
 import CloseIcon from "public/close-icon.svg";
 
 interface ModalProps {

@@ -6,8 +6,9 @@ import { useWallet, useAllWallets } from "useink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 
-import Button from "@/ui-kit/Button";
+import { Button } from "@/ui-kit/buttons";
 import Modal from "@/ui-kit/Modal";
+import DropdownButton from "@/ui-kit/buttons/DropdownButton";
 
 function Wallet() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,26 +17,24 @@ function Wallet() {
 
   if (account) {
     return (
-      <div className="relative group inline-flex items-center px-4 py-2 border border-gray-300 rounded-2xl cursor-pointer hover:bg-gray-100">
-        <FontAwesomeIcon icon={faWallet} className="mr-2" />
-        <span>{`${account.address.slice(0, 5)}...${account.address.slice(
-          -5
-        )}`}</span>
-        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-300 divide-y min-w-[155px] rounded-2xl shadow-lg opacity-0 group-hover:opacity-100 transition p-2">
-          {!!account.name && (
+      <DropdownButton
+        icon={faWallet}
+        text={`${account.address.slice(0, 5)}...${account.address.slice(-5)}`}
+        dropdownHeader={
+          !!account.name && (
             <div className="px-4 py-3 text-gray-900 dark:text-white">
               <div>Wallet name</div>
               <div className="font-medium truncate">{account.name}</div>
             </div>
-          )}
-          <button
-            onClick={disconnect}
-            className="block w-full text-center px-4 py-2 text-gray-800 hover:bg-gray-200"
-          >
-            Disconnect
-          </button>
-        </div>
-      </div>
+          )
+        }
+        dropdownActions={[
+          {
+            text: "Disconnect",
+            onClick: disconnect,
+          },
+        ]}
+      />
     );
   }
 

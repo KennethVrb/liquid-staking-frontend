@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Button from "@/ui-kit/Button";
+import { Button } from "@/ui-kit/buttons";
 
 const Stake: React.FC = () => {
   const [amount, setAmount] = useState<number>(0);

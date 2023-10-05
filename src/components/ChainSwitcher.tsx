@@ -1,4 +1,5 @@
 "use client";
+import DropdownButton from "@/ui-kit/buttons/DropdownButton";
 import React, { useState } from "react";
 import { useApi } from "useink";
 import { ChainId } from "useink/chains";
@@ -12,20 +13,36 @@ const ChainSwitcher: React.FC = () => {
     setSelectedChain(chain);
   };
 
-  const getStatusColor = () =>
-    !api ? "bg-red-500" : api?.api?.isConnected ? "bg-green-500" : "bg-red-500";
+  let statusColor = "bg-red-500";
+  if (api) {
+    if (api.api?.isConnected) {
+      statusColor = "bg-green-500";
+    }
+  }
 
   return (
-    <div className="flex items-center space-x-2">
-      <span className={`${getStatusColor()} rounded-full w-4 h-4`}></span>
-      <select
-        onChange={(e) => handleChainChange(e.target.value as ChainId)}
-        value={selectedChain}
-      >
-        <option value="shibuya-testnet">Shibuya</option>
-        <option value="polkadot">PolkadotJS</option>
-      </select>
-    </div>
+    <DropdownButton
+      text={
+        <>
+          <span className="relative">
+            <span
+              className={`${statusColor} rounded-full inline-block w-3 h-3 absolute top-[56%] transform -translate-y-1/2 left-0`}
+            ></span>
+            <span className="ml-4">{selectedChain}</span>
+          </span>
+        </>
+      }
+      dropdownActions={[
+        {
+          text: "Shibuya-testnet",
+          onClick: () => handleChainChange("shibuya-testnet"),
+        },
+        {
+          text: "Polkadot",
+          onClick: () => handleChainChange("polkadot"),
+        },
+      ]}
+    ></DropdownButton>
   );
 };
 
