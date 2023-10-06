@@ -41,6 +41,10 @@ const ChainSwitcher: React.FC = () => {
           text: "Polkadot",
           onClick: () => handleChainChange("polkadot"),
         },
+        {
+          text: "Westend-testnet",
+          onClick: () => handleChainChange("westend-testnet"),
+        },
       ]}
     ></DropdownButton>
   );
